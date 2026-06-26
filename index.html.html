@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Meta Tags -->
+    <title>Angat Restaurant | Premium Dining in Bavla, Gujarat</title>
+    <meta name="description" content="Experience authentic Punjabi, Chinese, and South Indian cuisine at Angat Restaurant, Bavla. The finest family dining destination on Ahmedabad-Rajkot Highway.">
+    <meta name="keywords" content="Angat Restaurant Bavla, Restaurants in Bavla, Punjabi Food Bavla, Best Restaurant near Ahmedabad Rajkot Highway">
+    <meta property="og:title" content="Angat Restaurant | Bavla's Finest Dining">
+    <meta property="og:description" content="Luxury dining experience with authentic flavors in the heart of Bavla.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Animate on Scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            light: '#e2c275',
+                            DEFAULT: '#c5a059',
+                            dark: '#a6833d',
+                        },
+                        dark: {
+                            pure: '#000000',
+                            rich: '#0a0a0a',
+                            elevated: '#161616',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass {
+            background: rgba(22, 22, 22, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(197, 160, 89, 0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #e2c275, #c5a059);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .loader-wrapper {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #c5a059;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #c5a059; border-radius: 10px; }
+    </style>
+
+    <!-- Schema.org Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Angat Restaurant",
+      "image": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bavla",
+        "addressRegion": "Gujarat",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "22.8361",
+        "longitude": "72.3664"
+      },
+      "url": "https://angatrestaurant.com",
+      "servesCuisine": ["Punjabi", "Chinese", "South Indian", "Fast Food"],
+      "priceRange": "₹₹"
+    }
+    </script>
+</head>
+<body class="bg-dark-pure text-gray-200 font-sans selection:bg-gold selection:text-dark-pure">
+
+    <!-- Loading Animation -->
+    <div id="loader" class="loader-wrapper">
+        <div class="text-center">
+            <h2 class="font-serif text-4xl text-gold animate-pulse mb-2">Angat</h2>
+            <div class="h-0.5 w-16 bg-gold mx-auto overflow-hidden">
+                <div class="h-full bg-white w-full animate-[loading_1.5s_infinite]"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-500 glass" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <a href="#" class="font-serif text-3xl font-bold tracking-tighter text-gold">ANGAT</a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center text-sm font-medium tracking-widest uppercase">
+                    <a href="#about" class="nav-link relative">About</a>
+                    <a href="#menu" class="nav-link relative">Menu</a>
+                    <a href="#gallery" class="nav-link relative">Gallery</a>
+                    <a href="#contact" class="px-6 py-2.5 bg-gold text-dark-pure rounded-full hover:bg-gold-light transition-colors duration-300">Book Table</a>
+                </div>
+
+                <!-- Mobile Toggle -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gold focus:outline-none">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-dark-rich border-b border-gold/10 p-6 flex-col space-y-4 md:hidden">
+            <a href="#about" class="text-lg py-2">About</a>
+            <a href="#menu" class="text-lg py-2">Menu</a>
+            <a href="#gallery" class="text-lg py-2">Gallery</a>
+            <a href="#contact" class="text-lg py-2 text-gold">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=2000" alt="Premium Dining" class="w-full h-full object-cover scale-105 animate-[slow-zoom_20s_infinite]">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-dark-pure"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl" data-aos="fade-up" data-aos-duration="1200">
+            <span class="inline-block py-1 px-4 border border-gold/40 rounded-full text-gold text-sm tracking-[0.3em] uppercase mb-6">Traditional Taste & Modern Elegance</span>
+            <h1 class="text-5xl md:text-8xl font-serif text-white mb-8 leading-tight">Authentic Flavors <br>of <span class="text-gradient italic">Angat</span></h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">Discover a premium culinary journey in Bavla, where every dish tells a story of tradition and quality ingredients.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#menu" class="w-full sm:w-auto px-10 py-4 bg-gold text-dark-pure font-semibold rounded-full hover:bg-white transition-all duration-300 transform hover:-translate-y-1">View Full Menu</a>
+                <a href="#contact" class="w-full sm:w-auto px-10 py-4 border border-white/20 text-white font-semibold rounded-full hover:bg-white/10 backdrop-blur-sm transition-all duration-300">Contact Us</a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="text-gold w-6 h-6"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-dark-rich px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="relative" data-aos="fade-right">
+                <div class="absolute -top-6 -left-6 w-32 h-32 border-t-2 border-l-2 border-gold/30"></div>
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800" alt="Restaurant Interior" class="rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition-all duration-700">
+                <div class="absolute -bottom-10 -right-10 hidden lg:block">
+                    <div class="glass p-8 rounded-2xl border border-gold/20">
+                        <p class="text-gold text-4xl font-serif mb-1 italic">Pure</p>
+                        <p class="text-white uppercase tracking-widest text-xs">Vegetarian Delight</p>
+                    </div>
+                </div>
+            </div>
+            <div data-aos="fade-left">
+                <h2 class="text-gold uppercase tracking-widest text-sm mb-4 font-bold">Our Heritage</h2>
+                <h3 class="text-4xl md:text-5xl font-serif text-white mb-6">A Family Tradition in Bavla</h3>
+                <p class="text-gray-400 mb-6 leading-relaxed">Located in the heart of Bavla, Angat Restaurant is more than just a dining spot—it's a destination where flavor meets hospitality. We specialize in bringing the rich heritage of Indian cuisine to your table with a modern twist.</p>
+                <p class="text-gray-400 mb-8 italic leading-relaxed">[Placeholder: Our journey began with a mission to serve authentic home-style food with the precision of premium culinary standards.]</p>
+                <div class="grid grid-cols-2 gap-8 pt-6 border-t border-gold/10">
+                    <div>
+                        <p class="text-3xl font-serif text-gold">100%</p>
+                        <p class="text-xs uppercase tracking-widest text-gray-500">Fresh Ingredients</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-serif text-gold">Premium</p>
+                        <p class="text-xs uppercase tracking-widest text-gray-500">Family Atmosphere</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Dishes -->
+    <section class="py-24 bg-dark-pure px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto text-center mb-16" data-aos="fade-up">
+            <h2 class="text-gold tracking-widest uppercase text-sm mb-4">Chef's Recommendations</h2>
+            <h3 class="text-4xl md:text-5xl font-serif text-white italic">Signature Dishes</h3>
+        </div>
+        
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Dish Card -->
+            <div class="group relative overflow-hidden rounded-3xl bg-dark-elevated border border-gold/10" data-aos="zoom-in" data-aos-delay="100">
+                <div class="h-80 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="text-xl font-serif text-white">Signature Paneer Tikka</h4>
+                        <span class="text-gold">[Price]</span>
+                    </div>
+                    <p class="text-gray-500 text-sm italic">Freshly marinated cottage cheese chunks grilled to perfection in a traditional tandoor.</p>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-3xl bg-dark-elevated border border-gold/10" data-aos="zoom-in" data-aos-delay="200">
+                <div class="h-80 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="text-xl font-serif text-white">Angat Special Dal</h4>
+                        <span class="text-gold">[Price]</span>
+                    </div>
+                    <p class="text-gray-500 text-sm italic">Our house-special slow-cooked lentils with a secret blend of aromatic spices.</p>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-3xl bg-dark-elevated border border-gold/10" data-aos="zoom-in" data-aos-delay="300">
+                <div class="h-80 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1541014741259-df549fa9ba6f?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 class="text-xl font-serif text-white">Premium Platter</h4>
+                        <span class="text-gold">[Price]</span>
+                    </div>
+                    <p class="text-gray-500 text-sm italic">A grand assortment of our best starters, served with house-made dips and chutneys.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Menu Selection -->
+    <section id="menu" class="py-24 bg-dark-rich px-6 relative">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-gold tracking-widest uppercase text-sm mb-4">Explore Our</h2>
+                <h3 class="text-4xl md:text-5xl font-serif text-white">Full Culinary Menu</h3>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-x-16 gap-y-10">
+                <!-- Punjabi -->
+                <div data-aos="fade-up">
+                    <h4 class="text-gold font-serif text-2xl mb-6 flex items-center gap-3">
+                        <span class="h-px w-8 bg-gold/30"></span> Punjabi
+                    </h4>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-end border-b border-white/5 pb-2">
+                            <div>
+                                <p class="text-white font-medium">Paneer Butter Masala</p>
+                                <p class="text-xs text-gray-500">[Description Placeholder]</p>
+                            </div>
+                            <span class="text-gold text-sm tracking-widest">₹---</span>
+                        </div>
+                        <div class="flex justify-between items-end border-b border-white/5 pb-2">
+                            <div>
+                                <p class="text-white font-medium">Veg Handi</p>
+                                <p class="text-xs text-gray-500">[Description Placeholder]</p>
+                            </div>
+                            <span class="text-gold text-sm tracking-widest">₹---</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chinese -->
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="text-gold font-serif text-2xl mb-6 flex items-center gap-3">
+                        <span class="h-px w-8 bg-gold/30"></span> Chinese
+                    </h4>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-end border-b border-white/5 pb-2">
+                            <div>
+                                <p class="text-white font-medium">Veg Manchurian</p>
+                                <p class="text-xs text-gray-500">[Dry / Gravy]</p>
+                            </div>
+                            <span class="text-gold text-sm tracking-widest">₹---</span>
+                        </div>
+                        <div class="flex justify-between items-end border-b border-white/5 pb-2">
+                            <div>
+                                <p class="text-white font-medium">Hakka Noodles</p>
+                                <p class="text-xs text-gray-500">[Wok tossed vegetables]</p>
+                            </div>
+                            <span class="text-gold text-sm tracking-widest">₹---</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- South Indian & Others -->
+                <div class="md:col-span-2 grid md:grid-cols-2 gap-16 pt-10">
+                    <div data-aos="fade-up">
+                        <h4 class="text-gold font-serif text-2xl mb-6 flex items-center gap-3">
+                            <span class="h-px w-8 bg-gold/30"></span> South Indian & Fast Food
+                        </h4>
+                        <div class="space-y-6">
+                            <p class="text-gray-500 italic text-sm">A variety of Crispy Dosas, Idlis, and Quick Bites available daily.</p>
+                            <a href="#contact" class="text-gold text-xs uppercase tracking-[0.2em] hover:text-white transition-colors">Enquire For Today's Special</a>
+                        </div>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <h4 class="text-gold font-serif text-2xl mb-6 flex items-center gap-3">
+                            <span class="h-px w-8 bg-gold/30"></span> Beverages
+                        </h4>
+                        <div class="space-y-6">
+                            <p class="text-gray-500 italic text-sm">Fresh Fruit Juices, Lassi, Mocktails, and Soft Drinks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-24 bg-dark-pure border-y border-gold/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-8 text-center">
+                <div class="space-y-4" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-16 h-16 glass rounded-full flex items-center justify-center mx-auto text-gold">
+                        <i data-lucide="leaf"></i>
+                    </div>
+                    <p class="text-xs uppercase tracking-widest font-bold">Fresh Ingredients</p>
+                </div>
+                <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 glass rounded-full flex items-center justify-center mx-auto text-gold">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <p class="text-xs uppercase tracking-widest font-bold">Hygienic Kitchen</p>
+                </div>
+                <div class="space-y-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 glass rounded-full flex items-center justify-center mx-auto text-gold">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <p class="text-xs uppercase tracking-widest font-bold">Family Friendly</p>
+                </div>
+                <div class="space-y-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 glass rounded-full flex items-center justify-center mx-auto text-gold">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <p class="text-xs uppercase tracking-widest font-bold">Quick Service</p>
+                </div>
+                <div class="space-y-4 lg:col-span-1 col-span-2" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 glass rounded-full flex items-center justify-center mx-auto text-gold">
+                        <i data-lucide="sofa"></i>
+                    </div>
+                    <p class="text-xs uppercase tracking-widest font-bold">Spacious Seating</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="py-24 bg-dark-rich px-4">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="space-y-4">
+                <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=600" class="rounded-xl grayscale hover:grayscale-0 transition duration-500 w-full aspect-[3/4] object-cover" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&q=80&w=600" class="rounded-xl grayscale hover:grayscale-0 transition duration-500 w-full aspect-square object-cover" data-aos="fade-up" data-aos-delay="100">
+            </div>
+            <div class="space-y-4 pt-10">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=600" class="rounded-xl grayscale hover:grayscale-0 transition duration-500 w-full aspect-square object-cover" data-aos="fade-up" data-aos-delay="50">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=600" class="rounded-xl grayscale hover:grayscale-0 transition duration-500 w-full aspect-[3/4] object-cover" data-aos="fade-up" data-aos-delay="150">
+            </div>
+            <div class="hidden md:block space-y-4">
+                <img src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?auto=format&fit=crop&q=80&w=600" class="rounded-xl grayscale hover:grayscale-0 transition duration-500 w-full aspect-[3/4] object-cover" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=600" class="rounded-xl grayscale hover:grayscale-0 transition duration-500 w-full aspect-square object-cover" data-aos="fade-up" data-aos-delay="100">
+            </div>
+            <div class="hidden md:block space-y-4 pt-10">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80&w=600" class="rounded-xl grayscale hover:grayscale-0 transition duration-500 w-full aspect-square object-cover" data-aos="fade-up" data-aos-delay="50">
+                <img src="https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?auto=format&fit=crop&q=80&w=600" class="rounded-xl grayscale hover:grayscale-0 transition duration-500 w-full aspect-[3/4] object-cover" data-aos="fade-up" data-aos-delay="150">
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="py-24 bg-dark-pure px-6">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <h3 class="text-3xl font-serif text-white mb-8">What Our Guests Say</h3>
+            <div class="glass p-10 rounded-3xl border border-gold/10">
+                <div class="flex justify-center mb-6">
+                    <i data-lucide="star" class="text-gold fill-gold w-5 h-5"></i>
+                    <i data-lucide="star" class="text-gold fill-gold w-5 h-5"></i>
+                    <i data-lucide="star" class="text-gold fill-gold w-5 h-5"></i>
+                    <i data-lucide="star" class="text-gold fill-gold w-5 h-5"></i>
+                    <i data-lucide="star" class="text-gold fill-gold w-5 h-5"></i>
+                </div>
+                <p class="text-xl text-gray-300 italic mb-8 font-light">"Angat Restaurant is one of the best places in Bavla for family dinners. The Punjabi food is authentic and the service is always warm."</p>
+                <div class="text-gold font-bold uppercase tracking-widest text-sm">— Verified Visitor Reviews</div>
+                <div class="mt-10">
+                    <a href="https://www.google.com/search?q=Angat+Restaurant+Bavla+reviews" target="_blank" class="inline-flex items-center gap-2 text-white/60 hover:text-gold transition-colors text-xs uppercase tracking-widest">
+                        Read all Google Reviews <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location -->
+    <section id="contact" class="py-24 bg-dark-rich px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <div data-aos="fade-right">
+                    <h3 class="text-4xl font-serif text-white mb-8">Visit Us</h3>
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <i data-lucide="map-pin" class="text-gold shrink-0"></i>
+                            <div>
+                                <p class="text-white font-medium mb-1">Address</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Angat Restaurant,<br>
+                                    Ahmedabad-Rajkot Highway,<br>
+                                    Bavla, Gujarat 382220
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <i data-lucide="clock" class="text-gold shrink-0"></i>
+                            <div>
+                                <p class="text-white font-medium mb-1">Hours</p>
+                                <p class="text-gray-400 text-sm">Mon - Sun: 11:00 AM - 11:00 PM</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <i data-lucide="phone" class="text-gold shrink-0"></i>
+                            <div>
+                                <p class="text-white font-medium mb-1">Reservations</p>
+                                <p class="text-gray-400 text-sm">+91 [Placeholder-Number]</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-12 flex gap-4">
+                        <a href="tel:+" class="flex-1 bg-gold text-dark-pure text-center py-4 rounded-xl font-bold hover:bg-white transition-all">Call Now</a>
+                        <a href="https://wa.me/" class="flex-1 border border-gold/30 text-gold text-center py-4 rounded-xl font-bold hover:bg-gold hover:text-dark-pure transition-all">WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 h-[450px] rounded-3xl overflow-hidden border border-gold/10 grayscale contrast-125" data-aos="fade-left">
+                    <!-- Placeholder Map -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14710.000000000000!2d72.3664!3d22.8361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDUwJzA5LjkiTiA3MsKwMjInMDAuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-pure pt-20 pb-10 border-t border-gold/10 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-2">
+                <h2 class="font-serif text-3xl text-gold mb-6">ANGAT</h2>
+                <p class="text-gray-500 max-w-sm mb-8">Redefining the dining experience in Bavla with authentic flavors and a commitment to quality since our inception.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-gold transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-gold transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-xs">Quick Links</h4>
+                <ul class="space-y-4 text-gray-500 text-sm">
+                    <li><a href="#about" class="hover:text-gold transition-colors">Our Story</a></li>
+                    <li><a href="#menu" class="hover:text-gold transition-colors">Menu Specialties</a></li>
+                    <li><a href="#gallery" class="hover:text-gold transition-colors">Gallery</a></li>
+                    <li><a href="#contact" class="hover:text-gold transition-colors">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-xs">Legal</h4>
+                <ul class="space-y-4 text-gray-500 text-sm">
+                    <li><a href="#" class="hover:text-gold transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-gold transition-colors">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-white/5 text-center text-gray-600 text-xs tracking-widest uppercase">
+            © 2024 Angat Restaurant Bavla. Crafted for Excellence.
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/" class="fixed bottom-8 right-8 z-50 bg-[#25d366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+    </a>
+
+    <!-- Scroll Top -->
+    <button id="scrollTop" class="fixed bottom-24 right-8 z-50 glass text-gold p-3 rounded-full opacity-0 transition-opacity duration-300">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <script>
+        // Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lucide Icons
+            lucide.createIcons();
+            
+            // AOS Animations
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100,
+                easing: 'ease-out-cubic'
+            });
+
+            // Loader
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 500);
+            }, 1000);
+
+            // Navbar Scroll Effect
+            const nav = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    nav.classList.add('py-2', 'shadow-2xl');
+                } else {
+                    nav.classList.remove('py-2', 'shadow-2xl');
+                }
+
+                // Scroll Top Visibility
+                const scrollBtn = document.getElementById('scrollTop');
+                if (window.scrollY > 500) {
+                    scrollBtn.classList.replace('opacity-0', 'opacity-100');
+                } else {
+                    scrollBtn.classList.replace('opacity-100', 'opacity-0');
+                }
+            });
+
+            // Scroll Top Action
+            document.getElementById('scrollTop').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                menu.classList.toggle('flex');
+            });
+            
+            // Close mobile menu on click
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    menu.classList.remove('flex');
+                });
+            });
+        });
+    </script>
+
+    <style>
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        @keyframes slow-zoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</body>
+</html>
